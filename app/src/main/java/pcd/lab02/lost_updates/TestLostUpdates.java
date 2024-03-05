@@ -4,9 +4,9 @@ public class TestLostUpdates {
 
 	public static void main(String[] args) throws Exception {
 		
-		int ntimes = 100; // try with different values: 100, 200, 1000, 5000, ...
-		
-		UnsafeCounter c = new UnsafeCounter(0);
+		int ntimes = 1000000; // try with different values: 100, 200, 1000, 5000, ...
+		Object lock = new Object();
+		UnsafeCounter c = new UnsafeCounter(0, lock);
 		Worker w1 = new Worker("Worker-A", c, ntimes);
 		Worker w2 = new Worker("Worker-B", c, ntimes);
 

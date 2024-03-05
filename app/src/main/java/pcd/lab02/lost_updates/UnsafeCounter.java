@@ -3,13 +3,17 @@ package pcd.lab02.lost_updates;
 public class UnsafeCounter {
 
 	private int cont;
+	private Object lock;
 	
-	public UnsafeCounter(int base){
+	public UnsafeCounter(int base, Object lock){
 		this.cont = base;
+		this.lock = lock;
 	}
 	
 	public void inc(){
-		cont++;
+		synchronized(lock){
+			cont++;
+		}
 	}
 	
 	public int getValue(){
