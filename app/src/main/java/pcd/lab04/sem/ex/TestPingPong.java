@@ -1,4 +1,5 @@
 package pcd.lab04.sem.ex;
+import java.util.concurrent.Semaphore;
 
 /**
  * Unsynchronized version
@@ -9,8 +10,9 @@ package pcd.lab04.sem.ex;
  */
 public class TestPingPong {
 	public static void main(String[] args) {
-		new Pinger().start();
-		new Ponger().start();	
+		Semaphore mutex = new Semaphore(1,true);
+		new Pinger(mutex).start();
+		new Ponger(mutex).start();	
 	}
 
 }
